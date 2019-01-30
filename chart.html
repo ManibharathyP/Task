@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Chart</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+      <style>
+         .download-app {
+         background-color: #2149a1;
+         width: 349px;
+         float: left;
+         text-align: center;
+         }
+         a{
+         cursor:pointer}
+         .btn_buy {
+         background: #2A3890;
+         padding: 3px 5px;
+         text-align: center;
+         color: #fff;
+         font-size: 16px;
+         border-radius: 30px;
+         min-width: 110px;
+         }
+         .height{
+         margin-top:30px;
+         }
+         .height1{
+         margin-top:100px;
+         }
+      </style>
+   </head>
+   <body id="bodybgcolor">
+      <img src="images/jio.jpg" style="width:50%;height:auto"/><img src="images/jio_2.jpg" style="width:50%;height:auto"/>
+      <div class="row"  style=" background-color: #2149a1; margin:0 auto;" >
+         <div class="col-md-4"></div>
+         <div class="col-md-4 download-app">
+            <a href="#" title=""><img src="images/myJio.svg" alt="jio"></a>
+         </div>
+         <div class="col-md-4"></div>
+      </div>
+      <div class="container-fluid">
+         <hr>
+         <div class="col-md-2">
+            <img src="images/jio_1.jpg" style="width:100%;height:auto;"/>
+            <ul class="nav ">
+               <li>
+                  <a onClick=" openlog('internet')"><i class="glyphicon glyphicon-transfer"></i> Internet</a>
+               </li>
+               <li>
+                  <a  onclick="openlog('call')"><i class="glyphicon glyphicon-earphone"></i>Calls</a>
+               </li>
+               <li>
+                  <a   onclick="openlog('message')"><i class="glyphicon glyphicon-envelope"></i> Message</a>
+               </li>
+               <li>
+                  <a  onclick="openlog('recharge')"><i class="glyphicon glyphicon-repeat"></i> Recharge</a>
+               </li>
+               <li>
+                  <a  onclick="openlog('apps')"><i class="glyphicon glyphicon-th"></i> Apps</a>
+               </li>
+            </ul>
+            </nav>
+         </div>
+         <div class="col-md-10" >
+            <div class="options" id="internet">
+               <div class="col-md-6" style="border:2px solid #3f8198;">
+                  <canvas id="myChartbar" ></canvas>
+               </div>
+               <div class="col-md-6" style="border:2px solid #3f8198;">
+                  <canvas id="pieChart" ></canvas>
+               </div>
+               <div class="col-md-12" style="border:2px solid #3f8198;">
+                  <canvas id="linechart"></canvas>
+               </div>
+            </div>
+            <div  class="options" id="call" style="display:none;">
+               <div class="col-md-6" style="border:2px solid #3f8198;">
+                  <canvas id="bar_call" ></canvas>
+               </div>
+               <div class="col-md-6" style="border:2px solid #3f8198;">
+                  <canvas id="pie_call" ></canvas>
+               </div>
+               <div class="col-md-12" style="border:2px solid #3f8198;">
+                  <canvas id="line_call"></canvas>
+               </div>
+            </div>
+            <div  class="options" id="message" style="display:none;">
+               <div class="col-md-6" style="border:2px solid #3f8198;">
+                  <canvas id="bar_mess" ></canvas>
+               </div>
+               <div class="col-md-6" style="border:2px solid #3f8198;">
+                  <canvas id="pie_mess" ></canvas>
+               </div>
+               <div class="col-md-12" style="border:2px solid #3f8198;">
+                  <canvas id="line_mess"></canvas>
+               </div>
+            </div>
+            <div class="options" id="recharge" style="display:none;">
+               <div class="col-md-6">
+                  <h2><a href="#" title="1.5 GB/DAY PACKS">1.5 GB/DAY PACKS</a></h2>
+                  <table class="table">
+                     <tr>
+                        <th>Plans</th>
+                        <th>Validity</th>
+                        <th>Benefits</th>
+                        <th></th>
+                     </tr>
+                     <tr>
+                        <td>1699</td>
+                        <td>365 days</td>
+                        <td>575.5 GB</td>
+                        <td><a href="#" title="View Details">View Details</a>
+                           <input type="button" class="btn_buy" value="Buy" >
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>399</td>
+                        <td>84 days</td>
+                        <td>126 GB</td>
+                        <td><a href="#" title="View Details">View Details</a>
+                           <input type="button" class="btn_buy" value="Buy" >
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>149</td>
+                        <td>28 days</td>
+                        <td>42 GB</td>
+                        <td><a href="#" title="View Details">View Details</a>
+                           <input type="button" class="btn_buy" value="Buy" >
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>349</td>
+                        <td>70 days</td>
+                        <td>105 GB</td>
+                        <td><a href="#" title="View Details">View Details</a>
+                           <input type="button" class="btn_buy" value="Buy" >
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>499</td>
+                        <td>91 days</td>
+                        <td>136 GB</td>
+                        <td><a href="#" title="View Details">View Details</a>
+                           <input type="button" class="btn_buy" value="Buy" >
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+               <div class="col-md-6">
+                  <h2><a href="#" title="1.5 GB/DAY PACKS">2 GB/DAY PACKS</a></h2>
+                  <table class="table">
+                     <tr>
+                        <th>Plans</th>
+                        <th>Validity</th>
+                        <th>Benefits</th>
+                        <th></th>
+                     </tr>
+                     <tr>
+                        <td>198</td>
+                        <td>28 days</td>
+                        <td>56 GB</td>
+                        <td><a href="#" title="View Details">View Details</a>
+                           <input type="button" class="btn_buy" value="Buy" >
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>398</td>
+                        <td>70 days</td>
+                        <td>120 GB</td>
+                        <td><a href="#" title="View Details">View Details</a>
+                           <input type="button" class="btn_buy" value="Buy" >
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>448</td>
+                        <td>84	 days</td>
+                        <td>168 GB</td>
+                        <td><a href="#" title="View Details">View Details</a>
+                           <input type="button" class="btn_buy" value="Buy" >
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>349</td>
+                        <td>70 days</td>
+                        <td>105 GB</td>
+                        <td><a href="#" title="View Details">View Details</a>
+                           <input type="button" class="btn_buy" value="Buy" >
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>498</td>
+                        <td>91 days</td>
+                        <td>182 GB</td>
+                        <td><a href="#" title="View Details">View Details</a>
+                           <input type="button" class="btn_buy" value="Buy" >
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+            </div>
+            <div class="options" id="apps" style="display:none;">
+               <div class="col-md-3 text-center" style="border: 1px solid #3f8198;">
+                  <img   src="images/bg_1.jpg" style="max-width: 100%;">
+                  <h3>
+                     <img src="images/app_1.png" alt="My Jio App Thumbnail" width="30" height="30">
+                     MyJio 
+                  </h3>
+                  <p >Manage your Jio Account.</p>
+                  <hr>
+                  <p style="color:#8a7373;">Available for</p>
+                  <img src="images/app_store.png">
+                  <img src="images/play_store.png">
+                  <div class="height"></div>
+               </div>
+               <div class="col-md-3 text-center" style="border: 1px solid #3f8198;">
+                  <img   src="images/bg_2.jpg" style="max-width: 100%;">
+                  <h3>
+                     <img src="images/app_2.png" alt="My Jio App Thumbnail" width="" height="">
+                     JioSaavn 
+                  </h3>
+                  <p > All your music. Anytime.Anywhere</p>
+                  <hr>
+                  <p style="color:#8a7373;">Available for</p>
+                  <img src="images/app_store.png">
+                  <img src="images/play_store.png">
+                  <div class="height"></div>
+               </div>
+               <div class="col-md-3 text-center" style="border: 1px solid #3f8198;">
+                  <img   src="images/bg_3.jpg" style="max-width: 100%;">
+                  <h3>
+                     <img src="images/app_3.png" alt="My Jio App Thumbnail" width="30" height="30">
+                     JioTV  
+                  </h3>
+                  <p > Daily dose of entertainment.</p>
+                  <hr>
+                  <p style="color:#8a7373;">Available for</p>
+                  <img src="images/app_store.png">
+                  <img src="images/play_store.png">
+                  <div class="height"></div>
+               </div>
+               <div class="col-md-3 text-center" style="border: 1px solid #3f8198;">
+                  <img   src="images/bg_4.jpg" style="max-width: 100%;">
+                  <h3>
+                     <img src="images/app_4.png" alt="My Jio App Thumbnail" width="30" height="30">
+                     JioCinema   
+                  </h3>
+                  <p >Movies, TV Shows, Music & more...</p>
+                  <hr>
+                  <p style="color:#8a7373;">Available for</p>
+                  <img src="images/app_store.png">
+                  <img src="images/play_store.png">
+                  <div class="height"></div>
+               </div>
+               <div class="col-md-3 text-center" style="border: 1px solid #3f8198;">
+                  <img   src="images/bg_5.jpg" style="max-width: 100%;">
+                  <h3>
+                     <img src="images/app_5.png" alt="My Jio App Thumbnail" width="30" height="30">
+                     JioChat
+                  </h3>
+                  <p >An efficient way to stay connected.</p>
+                  <hr>
+                  <p style="color:#8a7373;">Available for</p>
+                  <img src="images/app_store.png">
+                  <img src="images/play_store.png">
+                  <div class="height"></div>
+               </div>
+               <div class="col-md-3 text-center" style="border: 1px solid #3f8198;">
+                  <img   src="images/bg_6.jpg" style="max-width: 100%;">
+                  <h3>
+                     <img src="images/app_6.png" alt="My Jio App Thumbnail" width="30" height="30">
+                     JioMags  
+                  </h3>
+                  <p >There is always more to read.</p>
+                  <hr>
+                  <p style="color:#8a7373;">Available for</p>
+                  <img src="images/app_store.png">
+                  <img src="images/play_store.png">
+                  <div class="height"></div>
+               </div>
+               <div class="col-md-3 text-center" style="border: 1px solid #3f8198;">
+                  <img   src="images/bg_7.jpg" style="max-width: 100%;">
+                  <h3>
+                     <img src="images/app_7.png" alt="My Jio App Thumbnail" width="30" height="30">
+                     JioXpressNews
+                  </h3>
+                  <p >Stay Updated. Stay Ahead.</p>
+                  <hr>
+                  <p style="color:#8a7373;">Available for</p>
+                  <img src="images/app_store.png">
+                  <img src="images/play_store.png">
+                  <div class="height"></div>
+               </div>
+               <div class="col-md-3 text-center" style="border: 1px solid #3f8198;">
+                  <img   src="images/bg_8.jpg" style="max-width: 100%;">
+                  <h3>
+                     <img src="images/app_8.png" alt="My Jio App Thumbnail" width="30" height="30">
+                     JioCloud
+                  </h3>
+                  <p >Stay Updated. Stay Ahead.</p>
+                  <hr>
+                  <p style="color:#8a7373;">Available for</p>
+                  <img src="images/app_store.png">
+                  <img src="images/play_store.png">
+                  <div class="height"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script>
+         function openlog(name) {
+          var i;
+          var menu = document.getElementsByClassName("options");
+          for (i = 0; i < menu.length; i++) {
+            menu[i].style.display = "none";  
+          }
+          document.getElementById(name).style.display = "block";  
+          
+         }
+                 //BAR CHART
+                 var ctx = document.getElementById("myChartbar").getContext('2d');
+                 var myChart = new Chart(ctx, {
+                 type: 'bar',
+                 data: {
+                 labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+                 datasets: [{
+                 label: 'of GB',
+                 data: [1, 0.5, 1.2, 0.8, 0.3, 1.5],
+                 backgroundColor: [
+                 'rgba(255, 99, 132, 0.2)',
+                 'rgba(54, 162, 235, 0.2)',
+                 'rgba(255, 206, 86, 0.2)',
+                 'rgba(75, 192, 192, 0.2)',
+                 'rgba(153, 102, 255, 0.2)',
+                 'rgba(255, 159, 64, 0.2)'
+                 ],
+                 borderColor: [
+                 'rgba(255,99,132,1)',
+                 'rgba(54, 162, 235, 1)',
+                 'rgba(255, 206, 86, 1)',
+                 'rgba(75, 192, 192, 1)',
+                 'rgba(153, 102, 255, 1)',
+                 'rgba(255, 159, 64, 1)'
+                 ],
+                 borderWidth: 1,
+                 }]
+                 },
+                 options: {
+                 scales: {
+                 yAxes: [{
+                 ticks: {
+                 beginAtZero:true
+                 }
+                 }]
+                 }
+                 }
+                 });
+                 //PIE CHART
+                 var ctxP = document.getElementById("pieChart").getContext('2d');
+                 var myPieChart = new Chart(ctxP, {
+                 type: 'pie',
+                 data: {
+                   labels: ["1-week", "2-week", "3-week", "4-week"],
+                   datasets: [{
+                 data: [1, 0.5, 1.2, 0.8],
+                 backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
+                 hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5"]
+                   }]
+                 },
+                 options: {
+                   responsive: true
+                 }
+                   });
+                   
+                   //line chart
+           
+                 			var ctxl = document.getElementById('linechart').getContext('2d');
+                 			var linechart = new Chart(ctxl, {
+                 			type: 'line',
+                 			data: {
+                 				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                 				datasets: [{
+                 				label: 'of GB',
+                 					data: [1, 0.5, 1.2, 0.8, 0.3, 1.5,0.7,1,0.9,1.4,0.3,1.5],
+                 					borderColor: ["#FF5A5E"]
+                 
+                 				}]
+                 			},
+                 			options: {
+                 				responsive: true,
+                 				}
+                 		});
+                 //bar chart call
+                 	 var ctxc = document.getElementById("bar_call").getContext('2d');
+                 var bar_call = new Chart(ctxc, {
+                 type: 'bar',
+                 data: {
+                 labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+                 datasets: [{
+                 label: 'of calls',
+                 data: [20, 50, 30, 40, 70, 60],
+                 backgroundColor: [
+                 'rgba(255, 99, 132, 0.2)',
+                 'rgba(54, 162, 235, 0.2)',
+                 'rgba(255, 206, 86, 0.2)',
+                 'rgba(75, 192, 192, 0.2)',
+                 'rgba(153, 102, 255, 0.2)',
+                 'rgba(255, 159, 64, 0.2)'
+                 ],
+                 borderColor: [
+                 'rgba(255,99,132,1)',
+                 'rgba(54, 162, 235, 1)',
+                 'rgba(255, 206, 86, 1)',
+                 'rgba(75, 192, 192, 1)',
+                 'rgba(153, 102, 255, 1)',
+                 'rgba(255, 159, 64, 1)'
+                 ],
+                 borderWidth: 1,
+                 }]
+                 },
+                 options: {
+                 scales: {
+                 yAxes: [{
+                 ticks: {
+                 beginAtZero:true
+                 }
+                 }]
+                 }
+                 }
+                 });
+                 //PIE CHART call
+                 var ctxPc = document.getElementById("pie_call").getContext('2d');
+                 var pie_call = new Chart(ctxPc, {
+                 type: 'pie',
+                 data: {
+                   labels: ["1-week", "2-week", "3-week", "4-week"],
+                   datasets: [{
+                 data: [70,60, 90, 60],
+                 backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
+                 hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5"]
+                   }]
+                 },
+                 options: {
+                   responsive: true
+                 }
+                   });
+                   
+                   //line chart call
+                 			var ctxlc = document.getElementById('line_call').getContext('2d');
+                 			var line_call = new Chart(ctxlc, {
+                 			type: 'line',
+                 			data: {
+                 				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                 				datasets: [{
+                 				label: 'of calls',
+                 					data: [100,150,200,140,160,100,80,180,120,130,140,50],
+                 					borderColor: ["#FF5A5E"]
+                 
+                 				}]
+                 			},
+                 			options: {
+                 				responsive: true,
+                 				}
+                 		});
+                 	
+         	         //bar chart messge
+                 	 var ctxm = document.getElementById("bar_mess").getContext('2d');
+                 var bar_mess = new Chart(ctxm, {
+                 type: 'bar',
+                 data: {
+                 labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+                 datasets: [{
+                 label: 'of Message',
+                 data: [20, 30, 40, 10, 20, 40],
+                 backgroundColor: [
+                 'rgba(255, 99, 132, 0.2)',
+                 'rgba(54, 162, 235, 0.2)',
+                 'rgba(255, 206, 86, 0.2)',
+                 'rgba(75, 192, 192, 0.2)',
+                 'rgba(153, 102, 255, 0.2)',
+                 'rgba(255, 159, 64, 0.2)'
+                 ],
+                 borderColor: [
+                 'rgba(255,99,132,1)',
+                 'rgba(54, 162, 235, 1)',
+                 'rgba(255, 206, 86, 1)',
+                 'rgba(75, 192, 192, 1)',
+                 'rgba(153, 102, 255, 1)',
+                 'rgba(255, 159, 64, 1)'
+                 ],
+                 borderWidth: 1,
+                 }]
+                 },
+                 options: {
+                 scales: {
+                 yAxes: [{
+                 ticks: {
+                 beginAtZero:true
+                 }
+                 }]
+                 }
+                 }
+                 });
+                 //PIE CHART messge
+                 var ctxPm = document.getElementById("pie_mess").getContext('2d');
+                 var pie_mess = new Chart(ctxPm, {
+                 type: 'pie',
+                 data: {
+                   labels: ["1-week", "2-week", "3-week", "4-week"],
+                   datasets: [{
+                 data: [60,90, 40, 60],
+                 backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
+                 hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5"]
+                   }]
+                 },
+                 options: {
+                   responsive: true
+                 }
+                   });
+                   
+                   //line chart messge
+                 			var ctxlm = document.getElementById('line_mess').getContext('2d');
+                 			var line_mess = new Chart(ctxlm, {
+                 			type: 'line',
+                 			data: {
+                 				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                 				datasets: [{
+                 				label: 'of message',
+                 					data: [60,70,20,30,60,70,80,20,50,30,50,70],
+                 					borderColor: ["#FF5A5E"]
+                 
+                 				}]
+                 			},
+                 			options: {
+                 				responsive: true,
+                 				}
+                 		});
+                 	
+         			
+         
+              
+      </script>
+   </body>
+</html>
